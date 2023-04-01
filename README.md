@@ -31,21 +31,9 @@ export default defineConfig({
   plugins: [vue(), svgLoader()]
 })
 ```
-The last step is to import and register the Vue component, either for Vue 2 or 3. Notice the different imports for `SvgVue`:
+The last step is to import and register the Vue component,  for Vue 3. Notice the different imports for `SvgVue`:
 
-#### Vue 2
 
-```js
-// e.g. app.js
-import Vue from 'vue';
-import SvgVue from 'svg-vue';
-
-Vue.use(SvgVue);
-
-const app = new Vue({
-    el: '#app'
-});
-```
 
 #### Vue 3
 
