@@ -13,7 +13,7 @@
   "types": "./index.d.ts",
   "dependencies": {
     "@vue/compiler-sfc": "^3.2.20",
-    "svg-vue-component": "^0.0.1",
+    "svg-vue-component": "^0.0.2",
     "svgo": "^3.0.2"
   },
   "devDependencies": {
