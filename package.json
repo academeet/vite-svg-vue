@@ -1,16 +1,20 @@
 {
-  "name": "vite-svg-loader",
-  "version": "4.0.0",
-  "description": "Vite plugin to load SVG files as Vue components",
+  "name": "vite-svg-vue",
+  "version": "0.0.1",
+  "description": "Vite plugin to inline SVG files with Vue.js and automatically optimize them with SVGO",
   "keywords": [
     "vite",
     "vue",
-    "svg"
+    "svg",
+    "laravel",
+    "svgo"
   ],
   "main": "./index.js",
   "types": "./index.d.ts",
   "dependencies": {
     "@vue/compiler-sfc": "^3.2.20",
+    "svg-vue": "^0.2.0",
+    "svg-vue3": "^0.2.1",
     "svgo": "^3.0.2"
   },
   "devDependencies": {
@@ -25,15 +29,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jpkleemans/vite-svg-loader.git"
+    "url": "git+https://github.com/academeet/vite-svg-vue.git"
   },
   "author": {
-    "name": "Jan-Paul Kleemans",
-    "email": "jpkleemans@gmail.com"
+    "name": "Amit Kumar Soni",
+    "email": "amit.soni7@gmail.com"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jpkleemans/vite-svg-loader/issues"
+    "url": "https://github.com/academeet/vite-svg-vue/issues"
   },
-  "homepage": "https://github.com/jpkleemans/vite-svg-loader#readme"
+  "homepage": "https://github.com/academeet/vite-svg-vue#readme"
 }

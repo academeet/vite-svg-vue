@@ -1,10 +1,10 @@
-# Vite SVG loader
-Vite plugin to load SVG files as Vue components, using SVGO for optimization.
+# Vite SVG Vue
+Vite plugin to inline SVG files with Vue.js and automatically optimize them with SVGO.
 
-<a href="https://www.npmjs.com/package/vite-svg-loader" target="_blank"><img src="https://img.shields.io/npm/v/vite-svg-loader?style=flat-square" alt="Version"></a>
-<a href="https://www.npmjs.com/package/vite-svg-loader" target="_blank"><img src="https://img.shields.io/npm/dw/vite-svg-loader?style=flat-square" alt="Downloads"></a>
-<a href="https://github.com/jpkleemans/vite-svg-loader/actions" target="_blank"><img src="https://img.shields.io/github/actions/workflow/status/jpkleemans/vite-svg-loader/e2e.yml?branch=main&label=tests&style=flat-square" alt="Tests"></a>
-<a href="https://www.npmjs.com/package/vite-svg-loader" target="_blank"><img src="https://img.shields.io/npm/l/vite-svg-loader?style=flat-square" alt="License"></a>
+<a href="https://www.npmjs.com/package/vite-svg-vue" target="_blank"><img src="https://img.shields.io/npm/v/vite-svg-vue?style=flat-square" alt="Version"></a>
+<a href="https://www.npmjs.com/package/vite-svg-vue" target="_blank"><img src="https://img.shields.io/npm/dw/vite-svg-vue?style=flat-square" alt="Downloads"></a>
+<a href="https://github.com/academeet/vite-svg-vue/actions" target="_blank"><img src="https://img.shields.io/github/actions/workflow/status/academeet/vite-svg-vue/e2e.yml?branch=main&label=tests&style=flat-square" alt="Tests"></a>
+<a href="https://www.npmjs.com/package/vite-svg-vue" target="_blank"><img src="https://img.shields.io/npm/l/vite-svg-vue?style=flat-square" alt="License"></a>
 
 ```vue
 <template>
@@ -18,7 +18,7 @@ import MyIcon from './my-icon.svg'
 
 ### Install
 ```bash
-npm install vite-svg-loader --save-dev
+npm install vite-svg-vue --save-dev
 ```
 
 ### Setup
@@ -31,28 +31,72 @@ export default defineConfig({
   plugins: [vue(), svgLoader()]
 })
 ```
+The last step is to import and register the Vue component, either for Vue 2 or 3. Notice the different imports for `SvgVue`:
 
-### Import params
-### URL
-SVGs can be imported as URLs using the `?url` suffix:
+#### Vue 2
+
 ```js
-import iconUrl from './my-icon.svg?url'
-// '/assets/my-icon.2d8efhg.svg'
+// e.g. app.js
+import Vue from 'vue';
+import SvgVue from 'svg-vue';
+
+Vue.use(SvgVue);
+
+const app = new Vue({
+    el: '#app'
+});
 ```
 
-### Raw
-SVGs can be imported as strings using the `?raw` suffix:
+#### Vue 3
+
 ```js
-import iconRaw from './my-icon.svg?raw'
-// '<?xml version="1.0"?>...'
+// e.g. app.js
+import { createApp } from 'vue';
+import SvgVue from 'svg-vue3';
+
+const app = createApp({});
+
+app.use(SvgVue);
+
+app.mount('#app');
 ```
 
-### Component
-SVGs can be explicitly imported as Vue components using the `?component` suffix:
-```js
-import IconComponent from './my-icon.svg?component'
-// <IconComponent />
+## Usage
+
+To display your SVG files, all you need to do is pass the filename (and path if placed inside a subdirectory) to the Vue component:
+
+```html
+<!-- resources/svg/avatar.svg -->
+<svg-vue icon="avatar"></svg-vue>
+
+<!-- resources/svg/fontawesome/check.svg -->
+<svg-vue icon="fontawesome/check"></svg-vue>
+
+<!-- you can also use a "dot" notation as path -->
+<svg-vue icon="fontawesome.check"></svg-vue>
 ```
+
+## Options
+
+If nothing is passed to the extension inside your svgLoader config in vitee.config.js, the following options should be used:
+
+#### `vite.config.js`
+```js
+svgLoader({
+            svgoConfig:{
+                plugins: [
+                    {
+                      name: 'preset-default',
+                    },
+                    'removeViewBox',
+                    'removeDimensions'
+                  ],
+              
+            }
+            
+        }),
+```
+
 
 ### Default import config
 When no explicit params are provided SVGs will be imported as Vue components by default.
@@ -99,11 +143,4 @@ You'll also need to reference the type definitions:
 /// <reference types="vite-svg-loader" />
 ```
 
-## Sponsors
 
-<a href="https://www.nexxtmove.nl/" target="_blank">
-  <img src="https://raw.githubusercontent.com/jpkleemans/attribute-events/gh-pages/nexxtmove-logo.svg" alt="Nexxtmove Logo" width="200">
-</a>
-
-Thanks to <a href="https://www.nexxtmove.nl/" target="_blank">Nexxtmove</a> for sponsoring the development of this project.  
-Your logo or name here? [Sponsor this project](https://github.com/sponsors/jpkleemans).
