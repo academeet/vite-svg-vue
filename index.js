@@ -39,6 +39,8 @@ module.exports = function svgLoader (options = {}) {
 
       if (svgo !== false && query !== 'skipsvgo') {
         svg = optimizeSvg(svg, {
+          svgPath: 'resources/svg',
+          extract: false,
           ...svgoConfig,
           path
         }).data
