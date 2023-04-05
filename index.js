@@ -40,7 +40,7 @@ module.exports = function svgLoader (options = {}) {
       if (svgo !== false && query !== 'skipsvgo') {
         svg = optimizeSvg(svg, {
           ...svgoConfig,
-          path:'resources/svg/'+ path
+          path
         }).data
       }
 
